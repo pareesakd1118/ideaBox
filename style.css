@@ -7,6 +7,7 @@ body {
     min-height: 100vh;
     min-width: 100vw;
     margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 h1 {
@@ -17,11 +18,19 @@ h1 {
 }
 
 input {
-    width: 65%;
+    display: flex;
+    justify-content: space-around;
+    width: 1200px;
+    height: 55px;
+    margin-left: 5px;
+    border: 4px solid #1F1F3C;
 }
 
 label {
-    text-align:
+    text-align: center;
+    padding-left: 0;
+    font-size: 30px;
+    margin-right: 10px;
 }
 
 .main {
@@ -45,12 +54,46 @@ label {
 }
 
 form {
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
     background-color: #A8AAD2;
-    height: 50%;
-    text-wrap: wrap;
+    min-height: 50vh;
+    min-width: 50vw;
 }
 
 .output-area {
     background-color: #EAEAF4;
     height: 50%;
+}
+
+ul {
+    display: flex;
+    flex-direction: inherit;
+    align-items: flex-end;
+    justify-content: flex-end;
+    list-style-type: none;
+    padding-left: 0;
+    margin-right: 90px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+}
+
+#body {
+    margin-top: 30px;
+    height: 110px;
+}
+
+#save-button {
+    width: 1212px;
+    height: 110px;
+    border: 4px solid #1F1F3C;
+    background-color: #1F1F3C;
+    color: #EAEAF4;
+    font-size: 45px;
+    margin-top: 15px;
 }
