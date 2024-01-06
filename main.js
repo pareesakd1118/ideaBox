@@ -1,5 +1,6 @@
 /*<><>Data Models<><>*/
 var savedIdeas = [];
+var favoritedIdeas = [];
 var idea;
 
 /*<><>Query Selectors<><>*/
@@ -29,8 +30,15 @@ ideaForm.addEventListener('submit', (e) => {
 saveButton.addEventListener('mouseover', changeCursor)
 
 outputSection.addEventListener('click', (e) => {
-    if(e.target.className === 'delete-button' || e.target.className === 'delete') {
+    if(e.target.className === 'delete') {
     e.target.parentNode.parentNode.parentNode.remove();
+    }
+})
+outputSection.addEventListener("click", (event) => {
+    if(event.target.src.endsWith("star.svg")) {
+        event.target.src = "assets/star-active.svg";
+    } else {
+        event.target.src = "assets/star.svg";
     }
 })
 
@@ -47,6 +55,26 @@ outputSection.addEventListener('click', (e) => {
     }
 })
 
+outputSection.addEventListener('click', (e) => {
+    if (e.target.className === 'star') {
+        var cardToFavorite = e.target.parentNode.parentNode.parentNode
+        var ideaH = cardToFavorite.querySelector('h4')
+        for(var i = 0; i < savedIdeas.length; i++) {
+            if(savedIdeas[i].title == ideaH.innerText) {
+                favoritedIdeas.push(savedIdeas[i])
+                savedIdeas.splice(i,1)
+                return favoritedIdeas
+            }
+        }
+        for(var i = 0; i < favoritedIdeas.length; i++) {
+            if(favoritedIdeas[i].title == ideaH.innerText) {
+                savedIdeas.push(favoritedIdeas[i])
+                favoritedIdeas.splice(i,1)
+                return savedIdeas
+            }
+        }
+    }
+})
 
 /*<><>Functions<><>*/
 function handleInput() {
@@ -55,7 +83,6 @@ function handleInput() {
     saveButton.style.cursor = 'pointer'; 
 }
 
-
 /*<><>Functions<><>*/
 function saveIdea(title, body) {
     idea = {
@@ -63,6 +90,7 @@ function saveIdea(title, body) {
         body: body,
         id: Date.now(),
     }
+
 console.log(idea);
 return idea;
 }
@@ -79,6 +107,7 @@ function renderCard() {
         outputSection.innerHTML += 
             `<div class="card"> 
                 <header>
+                    <button class="star-button"><img class="star" src="assets/star.svg"></button>
                     <button class="delete-button"><img class="delete" src="assets/delete.svg"></button>
                 </header>
                 <h4>${currentIdea.title}</h4> 
