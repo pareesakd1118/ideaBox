@@ -8,7 +8,6 @@ var ideaForm = document.getElementById('form');
 var outputSection = document.querySelector('.output-area')
 var titleInput = document.getElementById('title');
 var bodyInput = document.getElementById('body');
-var deleteButton = document.querySelector("#delete-button");
 
 /*<><><>Event Listeners<><>*/
 ideaForm.addEventListener('submit', (e) => {
@@ -27,9 +26,29 @@ ideaForm.addEventListener('submit', (e) => {
     }
 });
 
+saveButton.addEventListener('mouseover', changeCursor)
+
+outputSection.addEventListener('click', (e) => {
+    if(e.target.className === 'delete-button' || e.target.className === 'delete') {
+    e.target.parentNode.parentNode.parentNode.remove();
+    }
+})
+
+outputSection.addEventListener('click', (e) => {
+    if (e.target.className === 'delete') {
+        var cardToRemove = e.target.parentNode.parentNode.parentNode
+        var ideaH = cardToRemove.querySelector('h4')
+        for(var i = 0; i < savedIdeas.length; i++) {
+            if(savedIdeas[i].title == ideaH.innerText) {
+                savedIdeas.splice(i, 1) 
+                return savedIdeas
+            }
+        }
+    }
+})
+
 
 /*<><>Functions<><>*/
-//This function makes an idea object with the title 
 function handleInput() {
     saveButton.disabled = false;
     saveButton.style.backgroundColor = '#1F1F3C'; 
@@ -38,7 +57,6 @@ function handleInput() {
 
 
 /*<><>Functions<><>*/
-//This function makes an idea object with the title 
 function saveIdea(title, body) {
     idea = {
         title: title,
@@ -49,29 +67,27 @@ console.log(idea);
 return idea;
 }
 
-//This function pushes new idea objects to the data model (savedIdeas)
 function pushIdea() {
     savedIdeas.push(idea);
     console.log(savedIdeas);
 }
 
-//This function makes a new element which is a card with the idea title and body 
 function renderCard() {
     outputSection.innerHTML = '';
     for (var i = Math.max(savedIdeas.length - 6, 0); i < savedIdeas.length; i++) {
         var currentIdea = savedIdeas[i];
-        outputSection.innerHTML += `<div class="card"> 
-                                        <header>
-                                            <button id="delete-button"><img src="/assets/delete.svg"></button>
-                                        </header>
-                                        <h4>${currentIdea.title}</h4> 
-                                        <article>${currentIdea.body}</article>    
-                                    </div>`;
+        outputSection.innerHTML += 
+            `<div class="card"> 
+                <header>
+                    <button class="delete-button"><img class="delete" src="assets/delete.svg"></button>
+                </header>
+                <h4>${currentIdea.title}</h4> 
+                <article>${currentIdea.body}</article>    
+            </div>`;
     }     
 }
 
-
-
-//A card should appear on the screen to match the comp above. The card should show the title and body the user entered into the form.
-//were going to for loop through the data model (savedIdeas)
-//for each element of the data model, we will create a new element within the output box, probably a div with a header and maybe p using the bodt tag
+function changeCursor() {
+    if(titleInput.value && bodyInput.value)
+        saveButton.classList.add('pointer')
+}

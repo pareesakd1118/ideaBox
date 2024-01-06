@@ -66,14 +66,12 @@ form {
     background-color: #EAEAF4;
     height: 50%;
     display: grid;
-    /* width: 100vw; */
     justify-content: center;
     height: 100vh;
-    grid-template-rows: 270px 270px; /* Set the height of rows */
-    grid-template-columns: 150px 150px; /* Set the width of columns */
+    grid-template-rows: 270px 270px;
+    grid-template-columns: 150px 150px;
     gap: 10px;
     grid-template-columns: repeat(3, 1fr);
-    /* display: flex; */
     padding: 30px;
 }
 
@@ -129,13 +127,16 @@ li {
     word-wrap: break-word;
     white-space: pre-wrap;
     word-break: break-word;
-    /* padding: 20px; */
     text-align: center;
     margin-left: 30px;
 }
 
 #body-label {
     margin-top: 7%;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 header {
@@ -146,7 +147,7 @@ header {
     background-color: #1F1F3C;
 }
 
-#delete-button {
+.delete-button {
     height: 85%;
     width: 25%;
     background-color: #1F1F3C;
