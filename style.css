@@ -65,7 +65,15 @@ form {
 .output-area {
     background-color: #EAEAF4;
     height: 50%;
-    display: flex;
+    display: grid;
+    /* width: 100vw; */
+    justify-content: center;
+    height: 100vh;
+    grid-template-rows: 270px 270px; /* Set the height of rows */
+    grid-template-columns: 150px 150px; /* Set the width of columns */
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    /* display: flex; */
     padding: 30px;
 }
 

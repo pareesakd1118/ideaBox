@@ -43,10 +43,14 @@ function pushIdea() {
 
 //This function makes a new element which is a card with the idea title and body 
 function renderCard() {
+    outputSection.innerHTML = '';
+    for (var i = Math.max(savedIdeas.length - 6, 0); i < savedIdeas.length; i++) {
+        var currentIdea = savedIdeas[i];
         outputSection.innerHTML += `<div class="card"> 
-                                    <h4>${idea.title}</h4> 
-                                    <article>${idea.body}</article>    
-                                    </div>`
+                                        <h4>${currentIdea.title}</h4> 
+                                        <article>${currentIdea.body}</article>    
+                                    </div>`;
+    }     
 }
 
 
