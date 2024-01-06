@@ -6,22 +6,34 @@ var idea;
 var saveButton = document.getElementById('save-button');
 var ideaForm = document.getElementById('form');
 var outputSection = document.querySelector('.output-area')
-
+var titleInput = document.getElementById('title');
+var bodyInput = document.getElementById('body');
 /*<><><>Event Listeners<><>*/
 ideaForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    var titleInput = document.getElementById('title');
-    var bodyInput = document.getElementById('body');
-    if(titleInput.value == "" || bodyInput.value == "") {
-        alert('Error');
-    }
-    else {
+    if (titleInput.value && bodyInput.value) {
         saveIdea(titleInput.value, bodyInput.value);
         pushIdea();
         renderCard();
-        ideaForm.reset()
+        ideaForm.reset();
+    } else {
+        saveButton.disabled = true;
+        saveButton.style.backgroundColor = 'lightgray';
+        saveButton.style.cursor = 'not-allowed'
+        titleInput.addEventListener('input', handleInput);
+        bodyInput.addEventListener('input', handleInput);
     }
-})
+});
+
+
+/*<><>Functions<><>*/
+//This function makes an idea object with the title 
+function handleInput() {
+    saveButton.disabled = false;
+    saveButton.style.backgroundColor = '#1F1F3C'; 
+    saveButton.style.cursor = 'pointer'; 
+}
+
 
 /*<><>Functions<><>*/
 //This function makes an idea object with the title 

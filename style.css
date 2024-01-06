@@ -93,6 +93,13 @@ li {
     height: 100%;
 }
 
+.enabled {
+    cursor: pointer;
+    opacity: 1.0;
+    background-color: #1F1F3C;
+    color: #EAEAF4;
+}
+
 #save-button {
     width: 70%;
     height: 25%;
