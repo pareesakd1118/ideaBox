@@ -8,6 +8,8 @@ var ideaForm = document.getElementById('form');
 var outputSection = document.querySelector('.output-area')
 var titleInput = document.getElementById('title');
 var bodyInput = document.getElementById('body');
+var deleteButton = document.querySelector("#delete-button");
+
 /*<><><>Event Listeners<><>*/
 ideaForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -59,11 +61,15 @@ function renderCard() {
     for (var i = Math.max(savedIdeas.length - 6, 0); i < savedIdeas.length; i++) {
         var currentIdea = savedIdeas[i];
         outputSection.innerHTML += `<div class="card"> 
+                                        <header>
+                                            <button id="delete-button"><img src="/assets/delete.svg"></button>
+                                        </header>
                                         <h4>${currentIdea.title}</h4> 
                                         <article>${currentIdea.body}</article>    
                                     </div>`;
     }     
 }
+
 
 
 //A card should appear on the screen to match the comp above. The card should show the title and body the user entered into the form.
