@@ -126,3 +126,9 @@ function changeCursor() {
     if(titleInput.value && bodyInput.value)
         saveButton.classList.add('pointer')
 }
+
+
+// need to make a filter button in the ideaBox section
+// when ckicked the button should show the favorite ideas that are in the 
+// favorites array. 
+// the text on the button needs to change to show all ideas when it's clicked
