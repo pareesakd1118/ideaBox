@@ -124,7 +124,7 @@ function renderCard(array) {
             `<div class="card" id="${currentIdea.id}"> 
                 <header>
                     <button class="star-button"><img class="star" src=${srcSet}></button>
-                    <button class="delete-button"><img class="delete" src="/assets2/delete.svg"></button>
+                    <button class="delete-button"><img class="delete" src="assets2/delete.svg"></button>
                 </header>
                 <h4>${currentIdea.title}</h4> 
                 <article>${currentIdea.body}</article>    
