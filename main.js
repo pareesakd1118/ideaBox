@@ -44,9 +44,9 @@ outputSection.addEventListener("click", (event) => {
         if(savedIdeas[i].id === favoritedID) {
             savedIdeas[i].isFavorited = !savedIdeas[i].isFavorited;
             if(savedIdeas[i].isFavorited) {
-                event.target.src = "assets/star-active.svg";
+                event.target.src = "/assets2/star-active.svg";
             } else {
-                event.target.src = "assets/star.svg";
+                event.target.src = "/assets2/star.svg";
             }
         }
     }
@@ -114,9 +114,9 @@ function renderCard(array) {
     var srcSet = "";
     for (var i = 0; i < array.length; i++) {
         if (array[i].isFavorited) {
-            srcSet = "assets/star-active.svg";
+            srcSet = "/assets2/star-active.svg";
         } else {
-            srcSet = "assets/star.svg";
+            srcSet = "/assets2/star.svg";
         }
         var currentIdea = array[i];
 
@@ -124,7 +124,7 @@ function renderCard(array) {
             `<div class="card" id="${currentIdea.id}"> 
                 <header>
                     <button class="star-button"><img class="star" src=${srcSet}></button>
-                    <button class="delete-button"><img class="delete" src="assets/delete.svg"></button>
+                    <button class="delete-button"><img class="delete" src="/assets2/delete.svg"></button>
                 </header>
                 <h4>${currentIdea.title}</h4> 
                 <article>${currentIdea.body}</article>    
