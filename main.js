@@ -10,6 +10,7 @@ var titleInput = document.getElementById('title');
 var bodyInput = document.getElementById('body');
 var starredIdeas = document.querySelector('.starred-ideas');
 var card = document.querySelector('.card');
+var searchBar = document.querySelector("#search-text");
 
 /*<><><>Event Listeners<><>*/
 ideaForm.addEventListener('submit', (e) => {
@@ -81,6 +82,12 @@ starredIdeas.addEventListener("click", (event) => {
     }  
 })
 
+searchBar.addEventListener("input", (event) => {
+    renderCard(searchIdeas(searchBar.value));
+});
+
+
+
 /*<><>Functions<><>*/
 function handleInput() {
     saveButton.disabled = false;
@@ -133,6 +140,12 @@ function renderCard(array) {
 function changeCursor() {
     if(titleInput.value && bodyInput.value)
         saveButton.classList.add('pointer');
+}
+
+function searchIdeas(searchString) {
+    return savedIdeas.filter(function(idea) {
+        return idea.title.includes(searchString) || idea.body.includes(searchString);
+    })
 }
 
 

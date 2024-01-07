@@ -15,7 +15,7 @@ h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 4vw;
     margin-top: 5%;
-    margin-bottom: 10%;
+    margin-bottom: 0;
 }
 
 input {
@@ -175,14 +175,45 @@ header {
     color: #1F1F3C;
     border: none;
     padding: 0;
-    width: 85%;
-    height: 10%;
+    width: 90%;
+    height: 30%;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 140%;
+    text-wrap: wrap;
 }
 
 .hide {
     display: none;
 }
+
+.filtering {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.search-bar {
+    display: flex;
+    height: 25%;
+    width: 90%; 
+}
+
+#search-icon {
+    background-color: #A8AAD2;
+    height: 100%;
+    width: auto;
+}
+
+#search-text {
+    height: 96%;
+    margin: none;
+    border: none;
+    padding: none;
+}
+
+
 
