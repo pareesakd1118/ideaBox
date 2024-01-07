@@ -52,20 +52,13 @@ outputSection.addEventListener("click", (event) => {
     console.log("Saved Ideas:",savedIdeas);
 })
 
-outputSection.addEventListener('click', (e) => { // Use ID instead of H4
-    if (e.target.className === 'delete') {
-        var cardToRemove = e.target.parentNode.parentNode.parentNode
-        var ideaH = cardToRemove.querySelector('h4')
+outputSection.addEventListener('click', (event) => { 
+    if (event.target.className === 'delete') {
+        var cardToRemoveID = parseInt(event.target.closest("div").id)
         for(var i = 0; i < savedIdeas.length; i++) {
-            if(savedIdeas[i].id === h4) {
+            if(savedIdeas[i].id === cardToRemoveID) {
                 savedIdeas.splice(i, 1) 
                 return savedIdeas
-            }
-        }
-        for(var i = 0; i < favoritedIdeas.length; i++) {
-            if(favoritedIdeas[i].title == ideaH.innerText) {
-                favoritedIdeas.splice(i, 1)
-                return favoritedIdeas
             }
         }
     }
