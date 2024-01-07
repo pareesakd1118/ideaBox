@@ -44,9 +44,9 @@ outputSection.addEventListener("click", (event) => {
         if(savedIdeas[i].id === favoritedID) {
             savedIdeas[i].isFavorited = !savedIdeas[i].isFavorited;
             if(savedIdeas[i].isFavorited) {
-                event.target.src = "/assets2/star-active.svg";
+                event.target.src = "assets2/star-active.svg";
             } else {
-                event.target.src = "/assets2/star.svg";
+                event.target.src = "assets2/star.svg";
             }
         }
     }
@@ -114,9 +114,9 @@ function renderCard(array) {
     var srcSet = "";
     for (var i = 0; i < array.length; i++) {
         if (array[i].isFavorited) {
-            srcSet = "/assets2/star-active.svg";
+            srcSet = "assets2/star-active.svg";
         } else {
-            srcSet = "/assets2/star.svg";
+            srcSet = "assets2/star.svg";
         }
         var currentIdea = array[i];
 
