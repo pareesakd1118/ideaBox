@@ -179,3 +179,7 @@ header {
     font-size: 100%;
 }
 
+.hide {
+    display: none;
+}
+
