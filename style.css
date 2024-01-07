@@ -42,8 +42,10 @@ label {
 .vertical-left {
     background-color: #1F1F3C;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 20%;
+    align-items: center;
 }
 
 .vertical-right {
@@ -114,6 +116,7 @@ li {
     color: #EAEAF4;
     font-size: 45px;
     margin-top: 5%;
+    font-family: 'Poppins', sans-serif;
 }
 
 .card {
@@ -161,5 +164,18 @@ header {
     background-color: #1F1F3C;
     border: none;
     cursor: pointer;
+}
+
+.starred-ideas {
+    background-color: #A8AAD2;
+    border-color: #A8AAD2;
+    color: #1F1F3C;
+    border: none;
+    padding: 0;
+    width: 85%;
+    height: 5%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 100%;
 }
 
