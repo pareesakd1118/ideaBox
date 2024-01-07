@@ -34,12 +34,21 @@ outputSection.addEventListener('click', (e) => {
     e.target.parentNode.parentNode.parentNode.remove();
     }
 })
+
 outputSection.addEventListener("click", (event) => {
-    if(event.target.src.endsWith("star.svg")) {
-        event.target.src = "assets/star-active.svg";
-    } else {
-        event.target.src = "assets/star.svg";
+    var favoritedID = parseInt(event.target.closest("div").id);
+    console.log(favoritedID);
+    for(let i = 0; i < savedIdeas.length; i++) {
+        if(savedIdeas[i].id === favoritedID) {
+            savedIdeas[i].isFavorited = !savedIdeas[i].isFavorited;
+            if(savedIdeas[i].isFavorited) {
+                event.target.src = "assets/star-active.svg";
+            } else {
+                event.target.src = "assets/star.svg";
+            }
+        }
     }
+    console.log("Saved Ideas:",savedIdeas);
 })
 
 outputSection.addEventListener('click', (e) => {
@@ -61,26 +70,26 @@ outputSection.addEventListener('click', (e) => {
     }
 })
 
-outputSection.addEventListener('click', (e) => {
-    if (e.target.className === 'star') {
-        var cardToFavorite = e.target.parentNode.parentNode.parentNode
-        var ideaH = cardToFavorite.querySelector('h4')
-        for(var i = 0; i < savedIdeas.length; i++) {
-            if(savedIdeas[i].title == ideaH.innerText) {
-                favoritedIdeas.push(savedIdeas[i])
-                savedIdeas.splice(i,1)
-                return favoritedIdeas
-            }
-        }
-        for(var i = 0; i < favoritedIdeas.length; i++) {
-            if(favoritedIdeas[i].title == ideaH.innerText) {
-                savedIdeas.push(favoritedIdeas[i])
-                favoritedIdeas.splice(i,1)
-                return savedIdeas
-            }
-        }
-    }
-})
+// outputSection.addEventListener('click', (e) => {
+//     if (e.target.className === 'star') {
+//         var cardToFavorite = e.target.parentNode.parentNode.parentNode
+//         var ideaH = cardToFavorite.querySelector('h4')
+//         for(var i = 0; i < savedIdeas.length; i++) {
+//             if(savedIdeas[i].title == ideaH.innerText) {
+//                 favoritedIdeas.push(savedIdeas[i])
+//                 savedIdeas.splice(i,1)
+//                 return favoritedIdeas
+//             }
+//         }
+//         for(var i = 0; i < favoritedIdeas.length; i++) {
+//             if(favoritedIdeas[i].title == ideaH.innerText) {
+//                 savedIdeas.push(favoritedIdeas[i])
+//                 favoritedIdeas.splice(i,1)
+//                 return savedIdeas
+//             }
+//         }
+//     }
+// })
 
 /*<><>Functions<><>*/
 function handleInput() {
@@ -95,6 +104,7 @@ function saveIdea(title, body) {
         title: title,
         body: body,
         id: Date.now(),
+        isFavorited: false
     }
 
 console.log(idea);
@@ -108,19 +118,27 @@ function pushIdea() {
 
 function renderCard() {
     outputSection.innerHTML = '';
+    var srcSet = ""
+    
     for (var i = Math.max(savedIdeas.length - 6, 0); i < savedIdeas.length; i++) {
+        if (savedIdeas[i].isFavorited) {
+            srcSet = "assets/star-active.svg"
+        } else {
+            srcSet = "assets/star.svg"
+        }
         var currentIdea = savedIdeas[i];
+
         outputSection.innerHTML += 
-            `<div class="card"> 
+            `<div class="card" id="${currentIdea.id}"> 
                 <header>
-                    <button class="star-button"><img class="star" src="assets/star.svg"></button>
+                    <button class="star-button"><img class="star" src=${srcSet}></button>
                     <button class="delete-button"><img class="delete" src="assets/delete.svg"></button>
                 </header>
                 <h4>${currentIdea.title}</h4> 
                 <article>${currentIdea.body}</article>    
-            </div>`;
-    }     
-}
+            </div>`;}
+}     
+
 
 function changeCursor() {
     if(titleInput.value && bodyInput.value)
