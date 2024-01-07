@@ -5,11 +5,11 @@ var idea;
 /*<><>Query Selectors<><>*/
 var saveButton = document.getElementById('save-button');
 var ideaForm = document.getElementById('form');
-var outputSection = document.querySelector('.output-area')
+var outputSection = document.querySelector('.output-area');
 var titleInput = document.getElementById('title');
 var bodyInput = document.getElementById('body');
 var starredIdeas = document.querySelector('.starred-ideas');
-var card = document.querySelector('.card')
+var card = document.querySelector('.card');
 
 /*<><><>Event Listeners<><>*/
 ideaForm.addEventListener('submit', (e) => {
@@ -17,7 +17,7 @@ ideaForm.addEventListener('submit', (e) => {
     if (titleInput.value && bodyInput.value) {
         saveIdea(titleInput.value, bodyInput.value);
         pushIdea();
-        renderCard();
+        renderCard(savedIdeas);
         ideaForm.reset();
     } else {
         saveButton.disabled = true;
@@ -28,7 +28,7 @@ ideaForm.addEventListener('submit', (e) => {
     }
 });
 
-saveButton.addEventListener('mouseover', changeCursor)
+saveButton.addEventListener('mouseover', changeCursor);
 
 outputSection.addEventListener('click', (e) => {
     if(e.target.className === 'delete') {
@@ -54,48 +54,33 @@ outputSection.addEventListener("click", (event) => {
 
 outputSection.addEventListener('click', (e) => {
     if (e.target.className === 'delete') {
-        var cardToRemove = e.target.parentNode.parentNode.parentNode
-        // var ideaH = cardToRemove.querySelector('h4')
+        var cardToRemove = e.target.closest('div');
+        var ideaH = cardToRemove.querySelector('h4')
         for(var i = 0; i < savedIdeas.length; i++) {
-            if(savedIdeas[i].id === ) {
+            if(savedIdeas[i].title == ideaH.innerText) {
                 savedIdeas.splice(i, 1) 
-                return savedIdeas
-            }
-        }
-        for(var i = 0; i < favoritedIdeas.length; i++) {
-            if(favoritedIdeas[i].title == ideaH.innerText) {
-                favoritedIdeas.splice(i, 1)
-                return favoritedIdeas
+                return savedIdeas;
             }
         }
     }
 })
 
-// starredIdeas.addEventListener('click', function(e) {
-//     for (var i =0; i < savedIdeas.length; i++) {
-//         if (!savedIdeas[i].isFavorited) {
-//             // card.classList.add('.hide')
-//             // e.target.classList.add('.hide')
-//         }
-//     }
-//     changeAllIdeaButton();
-// })
+starredIdeas.addEventListener("click", (event) => {
+    let starred = [];
+    if (starredIdeas.innerText === 'Show Starred Ideas') {
+        starredIdeas.innerText = 'Show All Ideas';
+        for(let i = 0; i < savedIdeas.length; i++) {
+            if(savedIdeas[i].isFavorited) {
+                starred.push(savedIdeas[i]);
+            }
+        }
+        renderCard(starred);
+    } else {
+        starredIdeas.innerText = 'Show Starred Ideas';
+        renderCard(savedIdeas);
+    }  
+})
 
-// starredIdeas.addEventListener("click", (event) => {
-//     if(starredIdeas.innerText === "Show Starred Ideas") {  
-//         for (var i =0; i < savedIdeas.length; i++) {
-//             if (!savedIdeas[i].isFavorited) {
-//                  savedIdeas.splice(i, 1);
-//             }
-//         }
-//         console.log(savedIdeas); 
-//         renderCard();   
-//     } else {
-//         console.log(savedIdeas); 
-//         renderCard();
-//     }
-// })
-console.log("card <>>>>", card)
 /*<><>Functions<><>*/
 function handleInput() {
     saveButton.disabled = false;
@@ -121,16 +106,16 @@ function pushIdea() {
     console.log(savedIdeas);
 }
 
-function renderCard() {
+function renderCard(array) {
     outputSection.innerHTML = '';
     var srcSet = ""
-    for (var i = Math.max(savedIdeas.length - 6, 0); i < savedIdeas.length; i++) {
-        if (savedIdeas[i].isFavorited) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].isFavorited) {
             srcSet = "assets/star-active.svg"
         } else {
             srcSet = "assets/star.svg"
         }
-        var currentIdea = savedIdeas[i];
+        var currentIdea = array[i];
 
         outputSection.innerHTML += 
             `<div class="card" id="${currentIdea.id}"> 
@@ -140,51 +125,16 @@ function renderCard() {
                 </header>
                 <h4>${currentIdea.title}</h4> 
                 <article>${currentIdea.body}</article>    
-            </div>`;}
+            </div>`;
+    }
 }     
 
 
 function changeCursor() {
     if(titleInput.value && bodyInput.value)
-        saveButton.classList.add('pointer')
-}
-
-function changeAllIdeaButton() {
-    if (starredIdeas.innerText === 'Show Starred Ideas') {
-        starredIdeas.innerText = 'Show All Ideas';
-    } else {
-        starredIdeas.innerText = 'Show Starred Ideas';
-    }
+        saveButton.classList.add('pointer');
 }
 
 
 
-// need to make a filter button in the ideaBox section
-// when ckicked the button should show the favorite ideas that are in the array
-// the text on the button needs to change to show all ideas when it's clicked
 
-/*When a user clicks the “Show Starred Ideas” button:
-only the favorited ideas should be visible
-the text on the button should change to “Show All Ideas”
-When a user clicks the “Show Starred Ideas” button:
-only the favorited ideas should be visible
-the text on the button should change to “Show All Ideas”*/
-
-/* loop through the array for elements that are not favorited and have a 
-conditional that will add a display none to the class. 
-add event listener to button to do 2 things. first will change the inner text
-to show all ideas, second will loop through the array and for favorite 
-is false, display none. 
-add a class of display: none and remove that class on click*/
-
-
-starredIdeas.addEventListener('click', function(e) {
-    var cardToHide = 
-    for (var i =0; i < savedIdeas.length; i++) {
-        if (!savedIdeas[i].isFavorited ) {
-            card.classList.add('.hide')
-            e.target.classList.add('.hide')
-        }
-    }
-    changeAllIdeaButton();
-})
