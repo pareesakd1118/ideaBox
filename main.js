@@ -13,8 +13,8 @@ var card = document.querySelector('.card');
 var searchBar = document.querySelector("#search-text");
 
 /*<><><>Event Listeners<><>*/
-ideaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+ideaForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     if (titleInput.value && bodyInput.value) {
         saveIdea(titleInput.value, bodyInput.value);
         pushIdea();
@@ -31,9 +31,9 @@ ideaForm.addEventListener('submit', (e) => {
 
 saveButton.addEventListener('mouseover', changeCursor);
 
-outputSection.addEventListener('click', (e) => {
-    if(e.target.className === 'delete') {
-    e.target.parentNode.parentNode.parentNode.remove();
+outputSection.addEventListener('click', (event) => {
+    if(event.target.className === 'delete') {
+      event.target.parentNode.parentNode.parentNode.remove();
     }
 })
 
@@ -53,13 +53,12 @@ outputSection.addEventListener("click", (event) => {
     console.log("Saved Ideas:",savedIdeas);
 })
 
-outputSection.addEventListener('click', (e) => {
-    if (e.target.className === 'delete') {
-        var cardToRemove = e.target.closest('div');
-        var ideaH = cardToRemove.querySelector('h4')
+outputSection.addEventListener('click', (event) => { 
+    if (event.target.className === 'delete') {
+        var cardToRemoveID = parseInt(event.target.closest("div").id);
         for(var i = 0; i < savedIdeas.length; i++) {
-            if(savedIdeas[i].title == ideaH.innerText) {
-                savedIdeas.splice(i, 1) 
+            if(savedIdeas[i].id === cardToRemoveID) {
+                savedIdeas.splice(i, 1); 
                 return savedIdeas;
             }
         }
@@ -86,8 +85,6 @@ searchBar.addEventListener("input", function() {
     renderCard(searchIdeas(searchBar.value));
 });
 
-
-
 /*<><>Functions<><>*/
 function handleInput() {
     saveButton.disabled = false;
@@ -95,14 +92,13 @@ function handleInput() {
     saveButton.style.cursor = 'pointer'; 
 }
 
-/*<><>Functions<><>*/
 function saveIdea(title, body) {
     idea = {
         title: title,
         body: body,
         id: Date.now(),
         isFavorited: false
-    }
+    };
 
 console.log(idea);
 return idea;
@@ -115,12 +111,12 @@ function pushIdea() {
 
 function renderCard(array) {
     outputSection.innerHTML = '';
-    var srcSet = ""
+    var srcSet = "";
     for (var i = 0; i < array.length; i++) {
         if (array[i].isFavorited) {
-            srcSet = "assets/star-active.svg"
+            srcSet = "assets/star-active.svg";
         } else {
-            srcSet = "assets/star.svg"
+            srcSet = "assets/star.svg";
         }
         var currentIdea = array[i];
 
@@ -147,7 +143,4 @@ function searchIdeas(searchString) {
         return idea.title.includes(searchString) || idea.body.includes(searchString);
     })
 }
-
-
-
 
