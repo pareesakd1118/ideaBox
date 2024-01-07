@@ -52,6 +52,12 @@ outputSection.addEventListener('click', (e) => {
                 return savedIdeas
             }
         }
+        for(var i = 0; i < favoritedIdeas.length; i++) {
+            if(favoritedIdeas[i].title == ideaH.innerText) {
+                favoritedIdeas.splice(i, 1)
+                return favoritedIdeas
+            }
+        }
     }
 })
 
