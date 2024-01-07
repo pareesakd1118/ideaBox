@@ -82,7 +82,7 @@ starredIdeas.addEventListener("click", (event) => {
     }  
 })
 
-searchBar.addEventListener("input", (event) => {
+searchBar.addEventListener("input", function() {
     renderCard(searchIdeas(searchBar.value));
 });
 
