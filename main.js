@@ -5,19 +5,20 @@ var idea;
 /*<><>Query Selectors<><>*/
 var saveButton = document.getElementById('save-button');
 var ideaForm = document.getElementById('form');
-var outputSection = document.querySelector('.output-area')
+var outputSection = document.querySelector('.output-area');
 var titleInput = document.getElementById('title');
 var bodyInput = document.getElementById('body');
 var starredIdeas = document.querySelector('.starred-ideas');
-var card = document.querySelector('.card')
+var card = document.querySelector('.card');
+var searchBar = document.querySelector("#search-text");
 
 /*<><><>Event Listeners<><>*/
-ideaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+ideaForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     if (titleInput.value && bodyInput.value) {
         saveIdea(titleInput.value, bodyInput.value);
         pushIdea();
-        renderCard();
+        renderCard(savedIdeas);
         ideaForm.reset();
     } else {
         saveButton.disabled = true;
@@ -28,11 +29,11 @@ ideaForm.addEventListener('submit', (e) => {
     }
 });
 
-saveButton.addEventListener('mouseover', changeCursor)
+saveButton.addEventListener('mouseover', changeCursor);
 
-outputSection.addEventListener('click', (e) => {
-    if(e.target.className === 'delete') {
-    e.target.parentNode.parentNode.parentNode.remove();
+outputSection.addEventListener('click', (event) => {
+    if(event.target.className === 'delete') {
+      event.target.parentNode.parentNode.parentNode.remove();
     }
 })
 
@@ -54,41 +55,36 @@ outputSection.addEventListener("click", (event) => {
 
 outputSection.addEventListener('click', (event) => { 
     if (event.target.className === 'delete') {
-        var cardToRemoveID = parseInt(event.target.closest("div").id)
+        var cardToRemoveID = parseInt(event.target.closest("div").id);
         for(var i = 0; i < savedIdeas.length; i++) {
             if(savedIdeas[i].id === cardToRemoveID) {
-                savedIdeas.splice(i, 1) 
-                return savedIdeas
+                savedIdeas.splice(i, 1); 
+                return savedIdeas;
             }
         }
     }
 })
 
-// starredIdeas.addEventListener('click', function(e) {
-//     for (var i =0; i < savedIdeas.length; i++) {
-//         if (!savedIdeas[i].isFavorited) {
-//             // card.classList.add('.hide')
-//             // e.target.classList.add('.hide')
-//         }
-//     }
-//     changeAllIdeaButton();
-// })
+starredIdeas.addEventListener("click", (event) => {
+    let starred = [];
+    if (starredIdeas.innerText === 'Show Starred Ideas') {
+        starredIdeas.innerText = 'Show All Ideas';
+        for(let i = 0; i < savedIdeas.length; i++) {
+            if(savedIdeas[i].isFavorited) {
+                starred.push(savedIdeas[i]);
+            }
+        }
+        renderCard(starred);
+    } else {
+        starredIdeas.innerText = 'Show Starred Ideas';
+        renderCard(savedIdeas);
+    }  
+})
 
-// starredIdeas.addEventListener("click", (event) => {
-//     if(starredIdeas.innerText === "Show Starred Ideas") {  
-//         for (var i =0; i < savedIdeas.length; i++) {
-//             if (!savedIdeas[i].isFavorited) {
-//                  savedIdeas.splice(i, 1);
-//             }
-//         }
-//         console.log(savedIdeas); 
-//         renderCard();   
-//     } else {
-//         console.log(savedIdeas); 
-//         renderCard();
-//     }
-// })
-console.log("card <>>>>", card)
+searchBar.addEventListener("input", function() {
+    renderCard(searchIdeas(searchBar.value));
+});
+
 /*<><>Functions<><>*/
 function handleInput() {
     saveButton.disabled = false;
@@ -96,14 +92,13 @@ function handleInput() {
     saveButton.style.cursor = 'pointer'; 
 }
 
-/*<><>Functions<><>*/
 function saveIdea(title, body) {
     idea = {
         title: title,
         body: body,
         id: Date.now(),
         isFavorited: false
-    }
+    };
 
 console.log(idea);
 return idea;
@@ -114,16 +109,16 @@ function pushIdea() {
     console.log(savedIdeas);
 }
 
-function renderCard() {
+function renderCard(array) {
     outputSection.innerHTML = '';
-    var srcSet = ""
-    for (var i = Math.max(savedIdeas.length - 6, 0); i < savedIdeas.length; i++) {
-        if (savedIdeas[i].isFavorited) {
-            srcSet = "assets/star-active.svg"
+    var srcSet = "";
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].isFavorited) {
+            srcSet = "assets/star-active.svg";
         } else {
-            srcSet = "assets/star.svg"
+            srcSet = "assets/star.svg";
         }
-        var currentIdea = savedIdeas[i];
+        var currentIdea = array[i];
 
         outputSection.innerHTML += 
             `<div class="card" id="${currentIdea.id}"> 
@@ -133,30 +128,19 @@ function renderCard() {
                 </header>
                 <h4>${currentIdea.title}</h4> 
                 <article>${currentIdea.body}</article>    
-            </div>`;}
+            </div>`;
+    }
 }     
 
 
 function changeCursor() {
     if(titleInput.value && bodyInput.value)
-        saveButton.classList.add('pointer')
+        saveButton.classList.add('pointer');
 }
 
-function changeAllIdeaButton() {
-    if (starredIdeas.innerText === 'Show Starred Ideas') {
-        starredIdeas.innerText = 'Show All Ideas';
-    } else {
-        starredIdeas.innerText = 'Show Starred Ideas';
-    }
+function searchIdeas(searchString) {
+    return savedIdeas.filter(function(idea) {
+        return idea.title.includes(searchString) || idea.body.includes(searchString);
+    })
 }
 
-// starredIdeas.addEventListener('click', function(e) {
-//     var cardToHide = 
-//     for (var i =0; i < savedIdeas.length; i++) {
-//         if (!savedIdeas[i].isFavorited ) {
-//             card.classList.add('.hide')
-//             e.target.classList.add('.hide')
-//         }
-//     }
-//     changeAllIdeaButton();
-// })
