@@ -52,12 +52,12 @@ outputSection.addEventListener("click", (event) => {
     console.log("Saved Ideas:",savedIdeas);
 })
 
-outputSection.addEventListener('click', (e) => {
+outputSection.addEventListener('click', (e) => { // Use ID instead of H4
     if (e.target.className === 'delete') {
         var cardToRemove = e.target.parentNode.parentNode.parentNode
-        // var ideaH = cardToRemove.querySelector('h4')
+        var ideaH = cardToRemove.querySelector('h4')
         for(var i = 0; i < savedIdeas.length; i++) {
-            if(savedIdeas[i].id === ) {
+            if(savedIdeas[i].id === h4) {
                 savedIdeas.splice(i, 1) 
                 return savedIdeas
             }
@@ -157,34 +157,13 @@ function changeAllIdeaButton() {
     }
 }
 
-
-
-// need to make a filter button in the ideaBox section
-// when ckicked the button should show the favorite ideas that are in the array
-// the text on the button needs to change to show all ideas when it's clicked
-
-/*When a user clicks the “Show Starred Ideas” button:
-only the favorited ideas should be visible
-the text on the button should change to “Show All Ideas”
-When a user clicks the “Show Starred Ideas” button:
-only the favorited ideas should be visible
-the text on the button should change to “Show All Ideas”*/
-
-/* loop through the array for elements that are not favorited and have a 
-conditional that will add a display none to the class. 
-add event listener to button to do 2 things. first will change the inner text
-to show all ideas, second will loop through the array and for favorite 
-is false, display none. 
-add a class of display: none and remove that class on click*/
-
-
-starredIdeas.addEventListener('click', function(e) {
-    var cardToHide = 
-    for (var i =0; i < savedIdeas.length; i++) {
-        if (!savedIdeas[i].isFavorited ) {
-            card.classList.add('.hide')
-            e.target.classList.add('.hide')
-        }
-    }
-    changeAllIdeaButton();
-})
+// starredIdeas.addEventListener('click', function(e) {
+//     var cardToHide = 
+//     for (var i =0; i < savedIdeas.length; i++) {
+//         if (!savedIdeas[i].isFavorited ) {
+//             card.classList.add('.hide')
+//             e.target.classList.add('.hide')
+//         }
+//     }
+//     changeAllIdeaButton();
+// })
