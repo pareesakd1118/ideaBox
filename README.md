@@ -8,19 +8,22 @@ We made a web application in which users can log their "good ideas" with both a 
 - The user is able to add unlimited ideas to the DOM and scroll to see all of them 
 
 ### Installation Instructions:
-User will have to navigate to our repository on github, fork the repository and copy the SSH key, run the git clone SSH key command on their local terminal and then open the text editor by cding into the cloned directory and running code ., finally to open the website the user will run the command open index.html
+1. Fork this repo and copy the SSH Key
+2. Navigate to terminal and run `git clone SSH key`
+3. Type `cd ticTacToe` in local terminal to navigate to root directory
+4. Type `code .` to open the directory in text editor, or simply type `open index.html` to open the web applicatio
 
 ### Preview of App:
  ![screen shot of Idea Box Web App](./assets2/Screenshot-IdeaBox.png)
 
 ### Context:
-We just completed the fourth week of mod1. We spent an average of 4 hours a day for 6 days on this project for a total of 20-30 hours of worktime. 
+We have been learning javascript for about one month, and HTML/CSS for about three weeks. We spent an average of 4 hours a day for 6 days on this project for a total of 20-30 hours of worktime. 
 
 ### Contributors:
-- David Kwon: https://github.com/dkwon1223
-- Pareesa Kamgar-Dayhoff: https://github.com/pareesakd1118
-- Asher Spurr: https://github.com/AsherSpurr
-- Brandon Doza: https://github.com/BrandonDoza
+- [David Kwon's GitHub](https://github.com/dkwon1223)
+- [Pareesa Kamgar-Dayhoff's GitHub](https://github.com/pareesakd1118)
+- [Asher Spurr's GitHub](https://github.com/AsherSpurr)
+- [Brandon Doza's GitHub](https://github.com/BrandonDoza)
 
 ### Learning Goals:
 The designated learning goals for this project are as follows:
@@ -29,9 +32,7 @@ The designated learning goals for this project are as follows:
 - Incorporate & iterate over arrays in order to filter what is being displayed
 - Craft code with clean style, using small functions that show trends toward DRYness, SRP, and purity
 
-Our personal learning goals were solidifying git hub work flow. 
-
 ### Wins + Challenges:
-One challenge that was also a win was when a group member deviated from the DTR and we had a long, kind and informative discussion about it, which was also something we previously decided we would do in the event of a deviation from the DTR and we all agree that we are better for it moving forward.
+One challenge that was also a win was when a group member deviated from the previously defined working boundaries/expectations (aka DTR) and we had a long, kind and informative discussion about it, which was also something we previously decided we would do in the event of a deviation from the DTR and we all agree that we are better for it moving forward.
 
 Individual wins and challenges included feeling more solid in using the git workflow and understanding the use of the data model to render the DOM. 
