@@ -11,7 +11,7 @@ We made a web application in which users can log their "good ideas" with both a 
 1. Fork this repo and copy the SSH Key
 2. Navigate to terminal and run `git clone SSH key`
 3. Type `cd ticTacToe` in local terminal to navigate to root directory
-4. Type `code .` to open the directory in text editor, or simply type `open index.html` to open the web applicatio
+4. Type `code .` to open the directory in text editor, or simply type `open index.html` to open the web application
 
 ### Preview of App:
  ![screen shot of Idea Box Web App](./assets2/Screenshot-IdeaBox.png)
