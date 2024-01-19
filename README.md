@@ -1,6 +1,6 @@
 # Ideabox
 ### Abstract:
-We made a web application in which users can log their "good ideas" with both a title and body/description of the idea. The ideas render as "cards" on the DOM once the user inputs values for the title/body of the idea and presses the save button. The web app has several features, including:
+We made a web application (deployed website linked [here](https://pareesakd1118.github.io/ideaBox/)) in which users can log their "good ideas" with both a title and body/description of the idea. The ideas render as "cards" on the DOM once the user inputs values for the title/body of the idea and presses the save button. The web app has several features, including:
 - The user is able to delete one of the ideas by clicking the X icon on each individual card
 - The user is able to favorite an idea by clicking the star icon on each individual card, in which case the star will turn from white to orange
 - The user is able to temporarily remove all "not favorited" ideas from the DOM by clicking the show favorite ideas button so that they can look solely at favorite ideas, and then bring all ideas back by clicking the same button, which will subsequently show a new message: "show all ideas"
